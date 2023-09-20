@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -15,14 +16,31 @@ public class Main {
 //                counter++;
 //            }
 //        }
+        String[][] Tb = {
+                {"♖","♘","♙","♔","♕","♙","♘","♖"},
+                {"♙","♙","♙","♙","♙","♙","♙","♙"},
+                {"- "," -","-","-","-","-","-","-"},
+                {" -"," -"," -","-","-","-","-","-"},
+                {" -"," -"," -","-","-","-","-","-"},
+                {" -"," -"," -","-","-","-","-","-"},
+                {"♟","♟","♟","♟","♟","♟","♟","♟"},
+                {"♜","♞","♝","♚","♛","♝","♞","♜"},
+        };
 
-
+        for (int i = 0 ; i < Tb.length ; i++){
+            for (int j = 0 ; j < Tb.length ; j++ ){
+                System.out.print("[ "+(Tb[i][j])+" ]");
+            }
+            System.out.println();
+        }
         for (int i = 0 ; i < T.length ; i++){
              for (int j = 0 ; j < T.length ; j++ ){
                  T[i][j] = count ;
                  count++ ;
              }
          }
+
+
 //        for (int i = 0 ; i < T.length ; i++){
 //            for (int j = 0 ; j < T.length ; j++ ){
 //                if (T[i][j]%2==0) {
@@ -68,7 +86,7 @@ public class Main {
                         }
                     }
                 }
-
+                T[7][1] = 0 ;
             }
             if (flag== true){
                 flag = false ;
@@ -77,7 +95,6 @@ public class Main {
             }
             System.out.println();
         }
-
         System.out.println("♞ ♘ \uD83D\uDE7E");
     }
 }
