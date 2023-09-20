@@ -4,8 +4,9 @@ public class Main {
     public static void main(String[] args) {
 
         int[][] T = new int[8][8];
-        String[] Ca = {"A","B","C","D","E","F","J","H"};
+        int[] Ca = {1,2,3,4,5,6,7,8};
         int count = 0 ;
+        boolean flag = true ;
         //int counter = 1;
 
 //        for (int i = 0; i < 8; i++) {
@@ -29,21 +30,55 @@ public class Main {
 //                }
 //            }
 //        }
-        System.out.println("\t  (1)\t (2)   (3)\t (4)   (5)\t (6)   (7)   (8)");
-        //System.out.println("\t\t    (0)\t (1)   (2)\t (3)   (4)\t (5)   (6)   (7)");
+        System.out.println("\t   (A)\t (B)   (C)\t (D)   (E)\t (F)   (G)   (H)");
+        System.out.println("\t\t    (0)\t (1)   (2)\t (3)   (4)\t (5)   (6)   (7)");
 
         for (int i = 0 ; i < T.length ; i++){
             System.out.print("("+Ca[i]+")  ");
-            //System.out.print("("+i+")  ");
+            System.out.print("("+i+")  ");
             for (int j = 0 ; j < T.length ; j++ ){
-                if (T[i][j]<10){
-                    System.out.print("[ "+T[i][j]+"  ]");
-                }else{
-                    System.out.print("[ "+T[i][j]+" ]");
+                if (flag == true)
+                {
+                    if (T[i][j]%2==0){
+                        if (T[i][j]<10){
+                            System.out.print("[ "+(T[i][j])+".  ]");
+                        }else{
+                            System.out.print("[ "+T[i][j]+". ]");
+                        }
+                    }else {
+                        if (T[i][j]<10){
+                            System.out.print("[ "+T[i][j]+"  ]");
+                        }else{
+                            System.out.print("[ "+T[i][j]+" ]");
+                        }
+                    }
+
+                }else {
+                    if (T[i][j]%2==0){
+                        if (T[i][j]<10){
+                            System.out.print("[ "+T[i][j]+"  ]");
+                        }else{
+                            System.out.print("[ "+T[i][j]+" ]");
+                        }
+                    }else {
+                        if (T[i][j]<10){
+                            System.out.print("[ "+T[i][j]+".  ]");
+                        }else{
+                            System.out.print("[ "+T[i][j]+". ]");
+                        }
+                    }
                 }
+
+            }
+            if (flag== true){
+                flag = false ;
+            }else {
+                flag = true ;
             }
             System.out.println();
         }
+
+        System.out.println("♞ ♘ \uD83D\uDE7E");
     }
 }
 
