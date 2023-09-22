@@ -27,12 +27,12 @@ public class Main {
                 {"♜","♞","♝","♚","♛","♝","♞","♜"},
         };
 
-        for (int i = 0 ; i < Tb.length ; i++){
-            for (int j = 0 ; j < Tb.length ; j++ ){
-                System.out.print("[ "+(Tb[i][j])+" ]");
-            }
-            System.out.println();
-        }
+//        for (int i = 0 ; i < Tb.length ; i++){
+//            for (int j = 0 ; j < Tb.length ; j++ ){
+//                System.out.print("[ "+(Tb[i][j])+" ]");
+//            }
+//            System.out.println();
+//        }
         for (int i = 0 ; i < T.length ; i++){
              for (int j = 0 ; j < T.length ; j++ ){
                  T[i][j] = count ;
@@ -70,7 +70,6 @@ public class Main {
                             System.out.print("[ "+T[i][j]+" ]");
                         }
                     }
-
                 }else {
                     if (T[i][j]%2==0){
                         if (T[i][j]<10){
@@ -86,7 +85,10 @@ public class Main {
                         }
                     }
                 }
-                T[7][1] = 0 ;
+
+                T[6][0] = 0 ;
+                T[5][0] = 48 ;
+                //T[7][1] = 0 ;
             }
             if (flag== true){
                 flag = false ;
@@ -95,7 +97,16 @@ public class Main {
             }
             System.out.println();
         }
-        System.out.println("♞ ♘ \uD83D\uDE7E");
+
+        for(int i = 0 ; i < T.length * T.length ; i++ ){
+            if (i%10 == 0)
+            System.out.println("i = "+i);
+        }
+
+
+
+
+        System.out.println("♞ ♘ "+ T.length);
     }
 }
 
