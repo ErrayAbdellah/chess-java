@@ -19,21 +19,75 @@ public class ChessGame {
 //            System.out.println("from : " + from);
 //            System.out.println("x = "+ fromX );
             int fromY = 7 - (from.charAt(1) - '1');
-//            System.out.println("FromX  => "+fromX);
-//            System.out.println("FromY  => "+fromY);
+            System.out.println("FromX  => "+fromX);
+            System.out.println("FromY  => "+fromY);
             int toX = to.charAt(0) - 'a';
             int toY = 7 - (to.charAt(1) - '1');
-
-            if (isValidMove(board, fromX, fromY, toX, toY)) {
-                board[toY][toX] = board[fromY][fromX];
-                board[fromY][fromX] = '-';
-                printBoard(board);
-            } else {
-                System.out.println("Invalid move. Try again.");
+            switch (board[fromY][fromX]){
+                case 'p'  :
+                    System.out.println("pawn");
+                    if (isValidMove(board, fromX, fromY, toX, toY)) {
+                        board[toY][toX] = board[fromY][fromX];
+                        board[fromY][fromX] = '-';
+                        printBoard(board);
+                    } else {
+                        System.out .println("Invalid move. Try again.");
+                    }
+                    break;
+                case 'r' :
+                    System.out.println("rook");
+                    if (isValidMoveRook(board, fromX, fromY, toX, toY)) {
+                        board[toY][toX] = board[fromY][fromX];
+                        board[fromY][fromX] = '-';
+                        printBoard(board);
+                    } else {
+                        System.out .println("Invalid move. Try again.");
+                    }
+                    break;
             }
+
         }
     }
 
+    private static boolean isValidMoveRook(char[][] board, int fromX, int fromY, int toX, int toY) {
+        if (fromX < 0 || fromX >= 8 || fromY < 0 || fromY >= 8 ||
+                toX < 0 || toX >= 8 || toY < 0 || toY >= 8) {
+            return false;
+        }
+
+        char piece = board[fromY][fromX];
+        char targetPiece = board[toY][toX];
+        int deltaX = Math.abs(toX - fromX);
+        int deltaY = Math.abs(toY - fromY);
+
+        if (piece == 'R' || piece == 'r') {
+            if (deltaX == 0 && deltaY > 0) {
+
+                int stepY = (toY > fromY) ? 1 : -1;
+                int y = fromY + stepY;
+                while (y != toY) {
+                    if (board[y][fromX] != '-') {
+                        return false;
+                    }
+                    y += stepY;
+                }
+                return true;
+            } else if (deltaY == 0 && deltaX > 0) {
+
+                int stepX = (toX > fromX) ? 1 : -1;
+                int x = fromX + stepX;
+                while (x != toX) {
+                    if (board[fromY][x] != '-') {
+                        return false;
+                    }
+                    x += stepX;
+                }
+                return true;
+            }
+        }
+
+        return false;
+    }
     private static char[][] createEmptyChessBoard() {
         char[][] board = new char[8][8];
         for (int i = 0; i < 8; i++) {
@@ -46,6 +100,11 @@ public class ChessGame {
             board[1][i] = 'P';
             board[6][i] = 'p';
         }
+        board[0][0] = 'R';
+        board[7][0] = 'r';
+        board[4][4] = 'r';
+        board[0][7] = 'R';
+        board[7][7] = 'r';
         return board;
     }
 
@@ -66,15 +125,16 @@ public class ChessGame {
         char piece = board[fromY][fromX];
         char targetPiece = board[toY][toX];
         int deltaY = toY - fromY;
-        System.out.println("piece : "+ board[fromY][fromX]);
-        System.out.println("targetPiece : "+  board[toY][toX]);
-        System.out.println("toY : "+ toY);
-        System.out.println("fromY : "+ fromY);
+//        System.out.println("piece : "+ board[fromY][fromX]);
+//        System.out.println("targetPiece : "+  board[toY][toX]);
+//        System.out.println("toY : "+ toY);
+//        System.out.println("fromY : "+ fromY);
         // White pawn movement
+
         if (piece == 'P') {
             if (deltaY == 1 && toX == fromX && targetPiece == '-') {
                 return true;
-            } else if (deltaY == 2 && fromY == 1 && deltaY == 2 && toX == fromX && targetPiece == '-' && board[fromY + 1][fromX] == '-') {
+            } else if (deltaY == 2 && fromY == 1 && toX == fromX && targetPiece == '-' && board[fromY + 1][fromX] == '-') {
                 return true;
             } else if (deltaY == 1 && Math.abs(toX - fromX) == 1 && targetPiece != '-') {
                 return true;
@@ -93,4 +153,5 @@ public class ChessGame {
 
         return false;
     }
+
 }
