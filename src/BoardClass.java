@@ -55,7 +55,12 @@ public class BoardClass {
 
     public static void main(String[] args) {
         BoardClass chessBoard = new BoardClass();
-        chessBoard.displayBoard();
+        //chessBoard.displayBoard();
+        String a  = "a3" ;
+
+        int b = a.charAt(1) - '1';
+
+        System.out.println(b);
         //System.out.println(pieces.ColorsBoard.BLACK);
     }
 }

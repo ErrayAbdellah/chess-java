@@ -19,6 +19,8 @@ public class ChessGame {
 //            System.out.println("from : " + from);
 //            System.out.println("x = "+ fromX );
             int fromY = 7 - (from.charAt(1) - '1');
+//            System.out.println("FromX  => "+fromX);
+//            System.out.println("FromY  => "+fromY);
             int toX = to.charAt(0) - 'a';
             int toY = 7 - (to.charAt(1) - '1');
 
