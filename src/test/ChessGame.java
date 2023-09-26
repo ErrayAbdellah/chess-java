@@ -10,29 +10,26 @@ public class ChessGame {
         printBoard(board);
 
         while (true) {
-            System.out.print("Enter the current position (e.g., 'a2'): ");
+            System.out.print("Enter the current position ('a2'): ");
             String from = scanner.next();
-            System.out.print("Enter the target position (e.g., 'a4'): ");
+            System.out.print("Enter the target position ('a4'): ");
             String to = scanner.next();
 
             int fromX = from.charAt(0) - 'a';
-//            System.out.println("from : " + from);
-//            System.out.println("x = "+ fromX );
             int fromY = 7 - (from.charAt(1) - '1');
-            System.out.println("FromX  => "+fromX);
-            System.out.println("FromY  => "+fromY);
+
             int toX = to.charAt(0) - 'a';
             int toY = 7 - (to.charAt(1) - '1');
             switch (board[fromY][fromX]){
                 case 'p'  :
                     System.out.println("pawn");
-                    if (isValidMove(board, fromX, fromY, toX, toY)) {
-                        board[toY][toX] = board[fromY][fromX];
-                        board[fromY][fromX] = '-';
-                        printBoard(board);
-                    } else {
-                        System.out .println("Invalid move. Try again.");
-                    }
+//                    if (isValidMove(board, fromX, fromY, toX, toY)) {
+//                        board[toY][toX] = board[fromY][fromX];
+//                        board[fromY][fromX] = '-';
+//                        printBoard(board);
+//                    } else {
+//                        System.out .println("Invalid move. Try again.");
+//                    }
                     break;
                 case 'r' :
                     System.out.println("rook");
@@ -56,7 +53,7 @@ public class ChessGame {
         }
 
         char piece = board[fromY][fromX];
-        char targetPiece = board[toY][toX];
+        //char targetPiece = board[toY][toX];
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
@@ -117,41 +114,38 @@ public class ChessGame {
         }
     }
 
-    private static boolean isValidMove(char[][] board, int fromX, int fromY, int toX, int toY) {
-        if (fromX < 0 || fromX >= 8 || fromY < 0 || fromY >= 8 ||
-                toX < 0 || toX >= 8 || toY < 0 || toY >= 8) {
-            return false;
-        }
-        char piece = board[fromY][fromX];
-        char targetPiece = board[toY][toX];
-        int deltaY = toY - fromY;
-//        System.out.println("piece : "+ board[fromY][fromX]);
-//        System.out.println("targetPiece : "+  board[toY][toX]);
-//        System.out.println("toY : "+ toY);
-//        System.out.println("fromY : "+ fromY);
-        // White pawn movement
-
-        if (piece == 'P') {
-            if (deltaY == 1 && toX == fromX && targetPiece == '-') {
-                return true;
-            } else if (deltaY == 2 && fromY == 1 && toX == fromX && targetPiece == '-' && board[fromY + 1][fromX] == '-') {
-                return true;
-            } else if (deltaY == 1 && Math.abs(toX - fromX) == 1 && targetPiece != '-') {
-                return true;
-            }
-        }
-        // Black pawn movement
-        else if (piece == 'p') {
-            if (deltaY == -1 && toX == fromX && targetPiece == '-') {
-                return true;
-            } else if (deltaY == -2 && fromY == 6 && deltaY == -2 && toX == fromX && targetPiece == '-' && board[fromY - 1][fromX] == '-') {
-                return true;
-            } else if (deltaY == -1 && Math.abs(toX - fromX) == 1 && targetPiece != '-') {
-                return true;
-            }
-        }
-
-        return false;
-    }
+//    private static boolean isValidMove(char[][] board, int fromX, int fromY, int toX, int toY) {
+//        if (fromX < 0 || fromX >= 8 || fromY < 0 || fromY >= 8 ||
+//                toX < 0 || toX >= 8 || toY < 0 || toY >= 8) {
+//            return false;
+//        }
+//        char piece = board[fromY][fromX];
+//        char targetPiece = board[toY][toX];
+//        int deltaY = toY - fromY;
+//
+//        // White pawn movement
+//
+//        if (piece == 'P') {
+//            if (deltaY == 1 && toX == fromX && targetPiece == '-') {
+//                return true;
+//            } else if (deltaY == 2 && fromY == 1 && toX == fromX && targetPiece == '-' && board[fromY + 1][fromX] == '-') {
+//                return true;
+//            } else if (deltaY == 1 && Math.abs(toX - fromX) == 1 && targetPiece != '-') {
+//                return true;
+//            }
+//        }
+//        // Black pawn movement
+//        else if (piece == 'p') {
+//            if (deltaY == -1 && toX == fromX && targetPiece == '-') {
+//                return true;
+//            } else if (deltaY == -2 && fromY == 6 && deltaY == -2 && toX == fromX && targetPiece == '-' && board[fromY - 1][fromX] == '-') {
+//                return true;
+//            } else if (deltaY == -1 && Math.abs(toX - fromX) == 1 && targetPiece != '-') {
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//    }
 
 }
