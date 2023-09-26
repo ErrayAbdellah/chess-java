@@ -37,7 +37,7 @@ public class Board {
         }
 
         // Place the initial chess pieces
-        // You can represent different pieces with their symbols (e.g., "K" for King, "Q" for Queen, "P" for pieces.Pawn, etc.)
+        // You can represent different pieces with their symbols (e.g., "K" for King, "Q" for Queen, "P" for main.java.chess.pieces.Pawn, etc.)
         // You'll need to implement the full board setup according to the starting chess positions.
         // This is just a simplified example:
         board[0][0] = "♖"; // Rook
