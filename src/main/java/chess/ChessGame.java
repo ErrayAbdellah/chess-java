@@ -1,7 +1,7 @@
 package main.java.chess;
 
-import main.java.chess.pieces.Pawn;
-import pieces.Rook;
+import main.java.chess.pieces.*;
+
 
 import java.util.Scanner;
 
@@ -11,10 +11,13 @@ public class ChessGame {
         char[][] board = Chessboard.createEmptyChessBoard();
 
         Chessboard.printBoard(board);
+
+        boolean isWhiteTurn = true;
+
         while (true) {
-            System.out.print("Enter the current position ('a2'): ");
+            System.out.print("Enter the current position : ");
             String from = scanner.next();
-            System.out.print("Enter the target position ('a4'): ");
+            System.out.print("Enter the target position : ");
             String to = scanner.next();
 
             int fromX = from.charAt(0) - 'a';
@@ -22,33 +25,47 @@ public class ChessGame {
 
             int toX = to.charAt(0) - 'a';
             int toY = 7 - (to.charAt(1) - '1');
-            switch (board[fromY][fromX]) {
-                case 'p':
-                    System.out.println("pawn");
-                    Pawn pawn = new Pawn('P',true);
-                    if (pawn.isValidMove(board, fromX, fromY, toX, toY)) {
-                        board[toY][toX] = board[fromY][fromX];
-                        board[fromY][fromX] = '-';
-                        Chessboard.printBoard(board);
-                    } else {
-                        System.out .println("Invalid move. Try again.");
-                    }
-                    break;
-                case 'r':
-                    Rook rook = new Rook('r',true);
-                    //System.out.println("rook");
-                    if (rook.isValidMove(board, fromX, fromY, toX, toY)) {
-                        board[toY][toX] = board[fromY][fromX];
-                        board[fromY][fromX] = '-';
-                        Chessboard.printBoard(board);
-                    } else {
-                        System.out.println("Invalid move. Try again.");
-                    }
-                    break;
-            }
+            char piece = board[fromY][fromX];
 
+            if ((isWhiteTurn && Character.isUpperCase(piece)) || (!isWhiteTurn && Character.isLowerCase(piece))) {
+
+                Piece chessPiece = null;
+                switch (Character.toLowerCase(piece)) {
+                    case 'p':
+                        chessPiece = new Pawn(piece, Character.isUpperCase(piece));
+                        break;
+                    case 'r':
+                        chessPiece = new Rook(piece, Character.isUpperCase(piece));
+                        break;
+                    case 'n':
+                        chessPiece = new Knight(piece, Character.isUpperCase(piece));
+                        break;
+                    case 'b':
+                        chessPiece = new Bishop(piece, Character.isUpperCase(piece));
+                        break;
+                    case 'q':
+                        chessPiece = new Queen(piece, Character.isUpperCase(piece));
+                        break;
+                    case 'k':
+                        chessPiece = new King(piece, Character.isUpperCase(piece));
+                        break;
+                    default:
+                        System.out.println("Invalid piece. Try again.");
+                        break;
+                }
+
+                if (chessPiece != null && chessPiece.isValidMove(board, fromX, fromY, toX, toY)) {
+                    board[toY][toX] = board[fromY][fromX];
+                    board[fromY][fromX] = '-';
+                    Chessboard.printBoard(board);
+                    isWhiteTurn = !isWhiteTurn;
+                } else {
+                    System.out.println("Invalid move. Try again.");
+                }
+            } else {
+                System.out.println("It's not your turn to move that piece. Try again.");
+            }
         }
     }
-
-
 }
+

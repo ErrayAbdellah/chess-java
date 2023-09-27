@@ -1,9 +1,6 @@
-package pieces;
+package main.java.chess.pieces;
 
-import main.java.chess.pieces.Piece;
-
-public class Rook extends Piece {
-
+public class Rook extends Piece{
     public Rook(char symbol, boolean isWhite) {
         super(symbol, isWhite);
     }
@@ -45,6 +42,7 @@ public class Rook extends Piece {
                 return true;
             }
         }
+
 
         return false;
     }
