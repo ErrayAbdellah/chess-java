@@ -27,7 +27,7 @@ public class ChessGame {
             int toY = 7 - (to.charAt(1) - '1');
             char piece = board[fromY][fromX];
 
-            if ((isWhiteTurn && Character.isUpperCase(piece)) || (!isWhiteTurn && Character.isLowerCase(piece))) {
+            //if ((isWhiteTurn && Character.isUpperCase(piece)) || (!isWhiteTurn && Character.isLowerCase(piece))) {
 
                 Piece chessPiece = null;
                 switch (Character.toLowerCase(piece)) {
@@ -62,9 +62,9 @@ public class ChessGame {
                 } else {
                     System.out.println("Invalid move. Try again.");
                 }
-            } else {
-                System.out.println("It's not your turn to move that piece. Try again.");
-            }
+//            } else {
+//                System.out.println("It's not your turn to move that piece. Try again.");
+//            }
         }
     }
 }

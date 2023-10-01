@@ -11,7 +11,7 @@ public class King extends Piece{
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
-        // A king can move one square in any direction: horizontally, vertically, or diagonally.
+
         return (deltaX <= 1 && deltaY <= 1);
     }
 }

@@ -4,11 +4,6 @@ public class Pawn extends Piece {
 
     public Pawn(char symbol, boolean isWhite) {
         super(symbol, isWhite);
-        if (isWhite){
-            symbol = 'P';
-        }else {
-            symbol = 'p';
-        }
     }
 
     @Override
@@ -20,9 +15,8 @@ public class Pawn extends Piece {
         char piece = board[fromY][fromX];
         char targetPiece = board[toY][toX];
         int deltaY = toY - fromY;
-        int direction = (isWhite()) ? 1 : -1;
 
-        if (piece == 'P') {
+        if (isWhite() && piece == 'P') {
             if (deltaY == 1 && toX == fromX && targetPiece == '-') {
                 return true;
             } else if (deltaY == 2 && fromY == 1 && toX == fromX && targetPiece == '-' && board[fromY + 1][fromX] == '-') {
@@ -31,8 +25,7 @@ public class Pawn extends Piece {
                 return true;
             }
         }
-
-        else if (piece == 'p' ) {
+        else if (!isWhite() &&piece == 'p' ) {
             if (deltaY == -1 && toX == fromX && targetPiece == '-') {
                 return true;
             } else if (deltaY == -2 && fromY == 6 && deltaY == -2 && toX == fromX && targetPiece == '-' && board[fromY - 1][fromX] == '-') {

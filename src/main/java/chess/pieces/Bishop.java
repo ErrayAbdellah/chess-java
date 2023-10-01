@@ -10,10 +10,10 @@ public class Bishop extends Piece{
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
-        return deltaX == deltaY && isPathClear(board, fromX, fromY, toX, toY);
+        return deltaX == deltaY && validMove(board, fromX, fromY, toX, toY);
     }
 
-    private boolean isPathClear(char[][] board, int fromX, int fromY, int toX, int toY) {
+    private boolean validMove(char[][] board, int fromX, int fromY, int toX, int toY) {
         int xDirection = (toX > fromX) ? 1 : -1;
         int yDirection = (toY > fromY) ? 1 : -1;
 

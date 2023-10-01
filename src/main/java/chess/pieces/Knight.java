@@ -10,7 +10,7 @@ public class Knight extends Piece {
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
-        // Knights move in an L-shape: 2 squares in one direction and 1 square perpendicular to that.
+
         return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2);
         
     }

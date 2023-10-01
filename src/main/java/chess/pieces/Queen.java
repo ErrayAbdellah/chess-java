@@ -10,12 +10,12 @@ public class Queen extends Piece {
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
-        // A queen can move like a rook (horizontally and vertically) or like a bishop (diagonally).
-        return (deltaX == 0 || deltaY == 0 || deltaX == deltaY) && isPathClear(board, fromX, fromY, toX, toY);
+
+        return (deltaX == 0 || deltaY == 0 || deltaX == deltaY) && validMove(board, fromX, fromY, toX, toY);
     }
 
-    // Helper method to check if the path is clear for a queen's move.
-    private boolean isPathClear(char[][] board, int fromX, int fromY, int toX, int toY) {
+
+    private boolean validMove(char[][] board, int fromX, int fromY, int toX, int toY) {
         int xDirection = (toX > fromX) ? 1 : (toX < fromX) ? -1 : 0;
         int yDirection = (toY > fromY) ? 1 : (toY < fromY) ? -1 : 0;
 
