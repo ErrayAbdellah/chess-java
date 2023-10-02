@@ -12,38 +12,37 @@ public class Rook extends Piece{
             return false;
         }
 
-        char piece = board[fromY][fromX];
-        //char targetPiece = board[toY][toX];
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
+        char targetPiece = board[toY][toX];
 
-        if (piece == 'R' || piece == 'r') {
-            if (deltaX == 0 && deltaY > 0) {
+        if (!((deltaX == 0 && deltaY > 0) || (deltaX > 0 && deltaY == 0))) {
+            return false;
+        }
 
-                int stepY = (toY > fromY) ? 1 : -1;
-                int y = fromY + stepY;
-                while (y != toY) {
-                    if (board[y][fromX] != '-') {
-                        return false;
-                    }
-                    y += stepY;
+        if (deltaX > 0) {
+            int stepX = (toX - fromX) / deltaX;
+            int x = fromX + stepX;
+            while (x != toX) {
+                if (board[fromY][x] != '-') {
+                    return false;
                 }
-                return true;
-            } else if (deltaY == 0 && deltaX > 0) {
-
-                int stepX = (toX > fromX) ? 1 : -1;
-                int x = fromX + stepX;
-                while (x != toX) {
-                    if (board[fromY][x] != '-') {
-                        return false;
-                    }
-                    x += stepX;
-                }
-                return true;
+                x += stepX;
             }
         }
 
+        if (deltaY > 0) {
+            int stepY = (toY - fromY) / deltaY;
+            int y = fromY + stepY;
+            while (y != toY) {
+                if (board[y][fromX] != '-') {
+                    return false;
+                }
+                y += stepY;
+            }
+        }
 
-        return false;
+        return true;
+
     }
 }
