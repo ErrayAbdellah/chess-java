@@ -37,7 +37,7 @@ public class Chessboard {
         board[7][4] = 'k';
         board[7][3] = 'q';
 
-        board[4][4] = 'q';
+        board[5][3] = 'r';
         return board;
     }
 

@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 public class ChessGame {
     public static void main(String[] args) {
+        boolean isFirstMovePawn = false  ;
+
         Scanner scanner = new Scanner(System.in);
         char[][] board = Chessboard.createEmptyChessBoard();
-
+        System.out.println('♕');
         Chessboard.printBoard(board);
 
         boolean isWhiteTurn = true;
@@ -25,6 +27,7 @@ public class ChessGame {
 
             int toX = to.charAt(0) - 'a';
             int toY = 7 - (to.charAt(1) - '1');
+
             char piece = board[fromY][fromX];
 
             //if ((isWhiteTurn && Character.isUpperCase(piece)) || (!isWhiteTurn && Character.isLowerCase(piece))) {
@@ -32,7 +35,9 @@ public class ChessGame {
                 Piece chessPiece = null;
                 switch (Character.toLowerCase(piece)) {
                     case 'p':
+                        System.out.println(Character.isUpperCase(piece));
                         chessPiece = new Pawn(piece, Character.isUpperCase(piece));
+
                         break;
                     case 'r':
                         chessPiece = new Rook(piece, Character.isUpperCase(piece));
@@ -57,6 +62,7 @@ public class ChessGame {
                 if (chessPiece != null && chessPiece.isValidMove(board, fromX, fromY, toX, toY)) {
                     board[toY][toX] = board[fromY][fromX];
                     board[fromY][fromX] = '-';
+
                     Chessboard.printBoard(board);
                     isWhiteTurn = !isWhiteTurn;
                 } else {

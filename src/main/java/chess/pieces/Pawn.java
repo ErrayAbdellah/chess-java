@@ -1,7 +1,7 @@
 package main.java.chess.pieces;
 
 public class Pawn extends Piece {
-
+    boolean isFirstMove = false ;
     public Pawn(char symbol, boolean isWhite) {
         super(symbol, isWhite);
     }
@@ -17,7 +17,8 @@ public class Pawn extends Piece {
         int deltaY = toY - fromY;
 
         if (isWhite() && piece == 'P') {
-            if (deltaY == 1 && toX == fromX && targetPiece == '-') {
+            System.out.println("whitr");
+            if (deltaY == 1 && toX == fromX && targetPiece == '-' ) {
                 return true;
             } else if (deltaY == 2 && fromY == 1 && toX == fromX && targetPiece == '-' && board[fromY + 1][fromX] == '-') {
                 return true;
@@ -25,7 +26,7 @@ public class Pawn extends Piece {
                 return true;
             }
         }
-        else if (!isWhite() &&piece == 'p' ) {
+        else if (!isWhite() && piece == 'p' ) {
             if (deltaY == -1 && toX == fromX && targetPiece == '-') {
                 return true;
             } else if (deltaY == -2 && fromY == 6 && deltaY == -2 && toX == fromX && targetPiece == '-' && board[fromY - 1][fromX] == '-') {
