@@ -6,14 +6,14 @@ public class Bishop extends Piece{
         super(symbol, isWhite);
     }
     @Override
-    public boolean isValidMove(char[][] board, int fromX, int fromY, int toX, int toY) {
+    public boolean isValidMove(Piece[][] board, int fromX, int fromY, int toX, int toY) {
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
         return deltaX == deltaY && validMove(board, fromX, fromY, toX, toY);
     }
 
-    private boolean validMove(char[][] board, int fromX, int fromY, int toX, int toY) {
+    private boolean validMove(Piece[][] board, int fromX, int fromY, int toX, int toY) {
         int xDirection = (toX > fromX) ? 1 : -1;
         int yDirection = (toY > fromY) ? 1 : -1;
 
@@ -21,7 +21,7 @@ public class Bishop extends Piece{
         int y = fromY + yDirection;
 
         while (x != toX && y != toY) {
-            if (board[y][x] != '-') {
+            if (board[y][x].getSymbol() != '-') {
                 return false;
             }
             x += xDirection;

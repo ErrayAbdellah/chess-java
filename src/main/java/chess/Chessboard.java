@@ -1,54 +1,59 @@
 package main.java.chess;
 
+import main.java.chess.pieces.*;
+
 public class Chessboard {
-    private char[][] board;
+    private Piece[][] board;
 
     public Chessboard() {
         board = createEmptyChessBoard();
     }
-    public static char[][] createEmptyChessBoard() {
-        char[][] board = new char[8][8];
+    public static Piece[][] createEmptyChessBoard() {
+        Piece[][] board = new Piece[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = '-';
+                board[i][j] = null ;
             }
         }
         for (int i = 0; i < 8; i++) {
-            board[1][i] = 'P';
-            board[6][i] = 'p';
+            board[1][i] = new Pawn('P',false);
+            //board[6][i] = new Pawn('p',true);
         }
-        board[0][0] = 'R';
-        board[7][0] = 'r';
-        board[0][7] = 'R';
-        board[7][7] = 'r';
+        board[0][0] = new Rook('R',false);
+        board[7][0] = new Rook('r',true);
+        board[0][7] = new Rook('R',false);
+        board[7][7] = new Rook('r',true);
 
-        board[0][1] = 'N';
-        board[0][6] = 'N';
-        board[7][1] = 'n';
-        board[7][6] = 'n';
+        board[0][1] = new Knight('N',false);
+        board[0][6] = new Knight('N',false);
+        board[7][1] = new Knight('n',true);
+        board[7][6] = new Knight('n',true);
 
-        board[0][2] = 'B';
-        board[0][5] = 'B';
-        board[7][2] = 'b';
-        board[7][5] = 'b';
+        board[0][2] =  new Bishop('B',false);
+        board[0][5] =  new Bishop('B',false);
+        board[7][2] =  new Bishop('b',true);
+        board[7][5] =  new Bishop('b',true);
 
-        board[0][3] = 'Q';
-        board[0][4] = 'K';
-        board[7][4] = 'k';
-        board[7][3] = 'q';
+        board[0][3] =  new Queen('Q',false);
+        board[0][4] =  new King('K',false);
+        board[7][4] =  new King('k',true);
+        board[7][3] =  new Queen('q',true);
 
-        board[5][3] = 'r';
+
         return board;
     }
 
-    public static void printBoard(char[][] board) {
+    public static void printBoard(Piece[][] board) {
         for (int i = 0; i < 8; i++) {
             System.out.print("("+(8-i) +") ");
             for (int j = 0; j < 8; j++) {
-                System.out.print(board[i][j] + " ");
+                if ((board[i][j] == null))  System.out.print("- ");
+                else  System.out.print(board[i][j].getSymbol() + " ");
+
             }
             System.out.println();
         }
+
         System.out.println("\n \ta b c d e f g h ");
     }
 

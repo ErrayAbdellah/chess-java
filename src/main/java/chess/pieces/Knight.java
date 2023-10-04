@@ -6,7 +6,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean isValidMove(char[][] board, int fromX, int fromY, int toX, int toY) {
+    public boolean isValidMove(Piece[][] board, int fromX, int fromY, int toX, int toY) {
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 

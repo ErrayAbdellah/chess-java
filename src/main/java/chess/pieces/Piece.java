@@ -35,7 +35,7 @@
             return isWhite;
         }
 
-        public abstract boolean isValidMove(char[][] board, int fromX, int fromY, int toX, int toY);
+        public abstract boolean isValidMove(Piece[][] board, int fromX, int fromY, int toX, int toY);
 
     //    private int oldX ;
     //    private int oldY;
@@ -73,6 +73,15 @@
     //                ", position=" + position +
     //                '}';
     //    }
+
+        @Override
+        public String toString() {
+            return "Piece{" +
+                    "symbol=" + symbol +
+                    ", isWhite=" + isWhite +
+                    ", isFirstMove=" + isFirstMove +
+                    '}';
+        }
     }
 
 

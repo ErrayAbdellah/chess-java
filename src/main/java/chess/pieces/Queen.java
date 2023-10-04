@@ -6,7 +6,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean isValidMove(char[][] board, int fromX, int fromY, int toX, int toY) {
+    public boolean isValidMove(Piece[][] board, int fromX, int fromY, int toX, int toY) {
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
@@ -15,7 +15,7 @@ public class Queen extends Piece {
     }
 
 
-    private boolean validMove(char[][] board, int fromX, int fromY, int toX, int toY) {
+    private boolean validMove(Piece[][] board, int fromX, int fromY, int toX, int toY) {
         int xDirection = (toX > fromX) ? 1 : (toX < fromX) ? -1 : 0;
         int yDirection = (toY > fromY) ? 1 : (toY < fromY) ? -1 : 0;
 
@@ -23,7 +23,7 @@ public class Queen extends Piece {
         int y = fromY + yDirection;
 
         while (x != toX || y != toY) {
-            if (board[y][x] != '-') {
+            if (board[y][x].getSymbol() != '-') {
                 return false;
             }
             x += xDirection;
