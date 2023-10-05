@@ -22,13 +22,17 @@ public class Queen extends Piece {
         int x = fromX + xDirection;
         int y = fromY + yDirection;
 
+        Piece piece = board[fromY][fromX];
+        Piece targetPiece = board[toY][toX];
+
         while (x != toX || y != toY) {
-            if (board[y][x].getSymbol() != '-') {
+            if (board[y][x] != null) {
                 return false;
             }
             x += xDirection;
             y += yDirection;
         }
+        if (targetPiece != null && piece.isWhite() == targetPiece.isWhite()) return false;
 
         return true;
     }

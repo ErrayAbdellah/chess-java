@@ -21,7 +21,7 @@ public class Bishop extends Piece{
         int y = fromY + yDirection;
 
         while (x != toX && y != toY) {
-            if (board[y][x].getSymbol() != '-') {
+            if (board[y][x] != null) {
                 return false;
             }
             x += xDirection;
