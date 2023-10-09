@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class ChessGame {
     public static void main(String[] args) {
-        boolean isFirstMovePawn = false  ;
 
         Scanner scanner = new Scanner(System.in);
         Piece[][] board = Chessboard.createEmptyChessBoard();
@@ -28,20 +27,34 @@ public class ChessGame {
             int toY = 7 - (to.charAt(1) - '1');
 
             Piece piece = board[fromY][fromX];
-           // if ((isWhiteTurn && Character.isUpperCase(piece.)) || (!isWhiteTurn && Character.isLowerCase(piece))) {
 
-            if (piece != null && piece.isValidMove(board, fromX, fromY, toX, toY)) {
-                    board[toY][toX] = board[fromY][fromX];
-                    board[fromY][fromX] = null ;
+            if (piece != null && piece.isWhite() == isWhiteTurn) {
+                if (piece.isValidMove(board, fromX, fromY, toX, toY)) {
 
-                    Chessboard.printBoard(board);
-                    isWhiteTurn = !isWhiteTurn;
+                    Piece savedPiece = board[toY][toX];
+                    board[toY][toX] = piece;
+                    board[fromY][fromX] = null;
+
+                    boolean isCheck = Chessboard.isKingInCheck(board, isWhiteTurn);
+
+                    board[fromY][fromX] = piece;
+                    board[toY][toX] = savedPiece;
+
+                    if (!isCheck) {
+                        board[toY][toX] = piece;
+                        board[fromY][fromX] = null;
+
+                        Chessboard.printBoard(board);
+                        isWhiteTurn = !isWhiteTurn;
+                    } else {
+                        System.out.println("Invalid move. Your king would be in check.");
+                    }
                 } else {
                     System.out.println("Invalid move. Try again.");
                 }
-//            } else {
-//                System.out.println("It's not your turn to move that piece. Try again.");
-//            }
+            } else {
+                System.out.println("It's not your turn to move that piece. Try again.");
+            }
         }
     }
 }

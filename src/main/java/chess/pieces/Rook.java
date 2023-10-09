@@ -45,7 +45,7 @@ public class Rook extends Piece{
                 }
             }
 
-        if (targetPiece != null && piece.isWhite() == targetPiece.isWhite()) return false;
+        if (targetPiece != null && piece.isWhite() ==targetPiece.isWhite() ) return false ;
         isFirstMove = true ;
         return true;
 

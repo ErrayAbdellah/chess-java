@@ -17,7 +17,7 @@ public class Chessboard {
         }
         for (int i = 0; i < 8; i++) {
             board[1][i] = new Pawn('P',false);
-            //board[6][i] = new Pawn('p',true);
+            board[6][i] = new Pawn('p',true);
         }
         board[0][0] = new Rook('R',false);
         board[7][0] = new Rook('r',true);
@@ -55,6 +55,38 @@ public class Chessboard {
         }
 
         System.out.println("\n \ta b c d e f g h ");
+    }
+
+    public static boolean isKingInCheck(Piece[][] board,boolean isWhite) {
+
+        int kingX = -1;
+        int kingY = -1;
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Piece piece = board[y][x];
+                if (piece instanceof King && piece.isWhite() == isWhite) {
+                    kingX = x;
+                    kingY = y;
+                    break;
+                }
+            }
+            if (kingX != -1) break;
+        }
+
+        if (kingX == -1) return false;
+
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Piece piece = board[y][x];
+                if (piece != null && piece.isWhite() != isWhite) {
+                    if (piece.isValidMove(board, x, y, kingX, kingY)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 }

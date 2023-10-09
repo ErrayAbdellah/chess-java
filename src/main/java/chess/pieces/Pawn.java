@@ -17,7 +17,6 @@ public class Pawn extends Piece {
         int deltaY = toY - fromY;
 
         if (!isWhite() && piece.getSymbol() == 'P') {
-            System.out.println("whitr");
             if (deltaY == 1 && toX == fromX && targetPiece == null ) {
                 isFirstMove = true ;
                 return true;

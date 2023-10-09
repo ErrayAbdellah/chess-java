@@ -3,7 +3,7 @@
     public abstract class Piece {
 
         private char symbol;
-        private boolean isWhite; // Indicates the piece's color (white or black)
+        private boolean isWhite;
         private boolean isFirstMove = true;
 
         public Piece(char symbol, boolean isWhite) {
